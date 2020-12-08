@@ -1,4 +1,4 @@
-import { addTodo, newTodo, completedTodo } from "../actions/index";
+import { REMOVE_TODO, ADD_TODO, COMPLETED_TODO } from "../actions/index";
 
 export const initialState = {
   todos: [
@@ -23,12 +23,12 @@ export const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case addTodo:
+    case ADD_TODO:
       return { ...state, newTodo: action.payload };
-    case newTodo:
-      return { ...state, todo: action.payload };
-    // case completedTodo:
-    //   return { ...state, completed: !state.completed };
+    case REMOVE_TODO:
+      return { ...state, todoId: action.payload };
+    case COMPLETED_TODO:
+      return { ...state, completed: !state.completed };
     default:
       return state;
   }

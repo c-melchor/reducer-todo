@@ -1,19 +1,19 @@
-const ADD_TODO = "add_todo";
-const NEW_TODO = "new_todo";
-const COMPLETED_TODO = "completed_todo";
+export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const COMPLETED_TODO = "COMPLETED_TODO";
 
 export const addTodo = newTodo => {
   return { type: ADD_TODO, payload: newTodo };
 };
 
-export const newTodo = todo => {
-  return { type: NEW_TODO, payload: todo };
+export const removeTodo = todoId => {
+  return { type: REMOVE_TODO, payload: todoId };
 };
 
-// export const completedTodo = completed => {
-//   return { type: COMPLETED_TODO, payload: completed };
-// };
+export const completedTodo = completed => {
+  return { type: COMPLETED_TODO, payload: completed };
+};
 
-// export const newId = () => {
-//     return
+// export const clearCompleted = () => {
+
 // }

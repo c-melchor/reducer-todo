@@ -1,27 +1,38 @@
-import React from "react";
-import { addTodo, newTodo } from "../actions";
+import React, { useState } from "react";
+import { addTodo, removeTodo, completedTodo } from "../actions/index";
 
 const TodoForm = props => {
   const { state, dispatch } = props;
+  const [formData, setFormData] = useState("");
 
   const handleChanges = e => {
-    dispatch(newTodo(e.target.value));
+    setFormData(e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    dispatch(
+      addTodo(
+        state.todos.push({
+          ...state,
+          item: formData,
+          id: Date.now(),
+          completed: false
+        })
+      )
+    );
   };
 
   return (
     <div>
+      <pre>{JSON.stringify(state.null, 2)}</pre>
       <form>
         <label htmlFor="todo" />
         To do:
         <br />
-        <input
-          type="text"
-          id="todo"
-          value={state.addedTodo}
-          onChange={handleChanges}
-        />
+        <input type="text" id="todo" onChange={handleChanges} />
         <br />
-        <button type="submit">Click to Add</button>
+        <button onClick={onSubmit}>Click to Add</button>
         <button>Click to Clear</button>
       </form>
     </div>
