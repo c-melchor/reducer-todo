@@ -6,7 +6,7 @@ export default function Todo(props) {
   console.log("todo state ", state);
 
   const onClick = e => {
-    dispatch(completedTodo(true));
+    dispatch(completedTodo(state.todos.id));
     console.log(state.todos, "state on click");
   };
 

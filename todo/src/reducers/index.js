@@ -28,7 +28,11 @@ export default function reducer(state = initialState, action) {
     case REMOVE_TODO:
       return { ...state, todoId: action.payload };
     case COMPLETED_TODO:
-      return { ...state, completed: !state.completed };
+      return state.map(todo =>
+        action.payload === todo.id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      );
     default:
       return state;
   }
